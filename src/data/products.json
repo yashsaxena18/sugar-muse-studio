@@ -1,0 +1,22 @@
+[
+  { "id": 1, "name": "", "description": "", "price": "", "category": "Traditional Sweets", "image": "" },
+  { "id": 2, "name": "", "description": "", "price": "", "category": "Traditional Sweets", "image": "" },
+  { "id": 3, "name": "", "description": "", "price": "", "category": "Traditional Sweets", "image": "" },
+  { "id": 4, "name": "", "description": "", "price": "", "category": "Traditional Sweets", "image": "" },
+  { "id": 5, "name": "", "description": "", "price": "", "category": "Bengali Sweets", "image": "" },
+  { "id": 6, "name": "", "description": "", "price": "", "category": "Bengali Sweets", "image": "" },
+  { "id": 7, "name": "", "description": "", "price": "", "category": "Bengali Sweets", "image": "" },
+  { "id": 8, "name": "", "description": "", "price": "", "category": "Bengali Sweets", "image": "" },
+  { "id": 9, "name": "", "description": "", "price": "", "category": "Dry Fruit Sweets", "image": "" },
+  { "id": 10, "name": "", "description": "", "price": "", "category": "Dry Fruit Sweets", "image": "" },
+  { "id": 11, "name": "", "description": "", "price": "", "category": "Dry Fruit Sweets", "image": "" },
+  { "id": 12, "name": "", "description": "", "price": "", "category": "Dry Fruit Sweets", "image": "" },
+  { "id": 13, "name": "", "description": "", "price": "", "category": "Namkeen", "image": "" },
+  { "id": 14, "name": "", "description": "", "price": "", "category": "Namkeen", "image": "" },
+  { "id": 15, "name": "", "description": "", "price": "", "category": "Namkeen", "image": "" },
+  { "id": 16, "name": "", "description": "", "price": "", "category": "Festival Specials", "image": "" },
+  { "id": 17, "name": "", "description": "", "price": "", "category": "Festival Specials", "image": "" },
+  { "id": 18, "name": "", "description": "", "price": "", "category": "Festival Specials", "image": "" },
+  { "id": 19, "name": "", "description": "", "price": "", "category": "Gift Boxes", "image": "" },
+  { "id": 20, "name": "", "description": "", "price": "", "category": "Gift Boxes", "image": "" }
+]
