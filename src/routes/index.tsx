@@ -1,29 +1,587 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { motion } from "framer-motion";
+import {
+  ArrowRight,
+  Award,
+  ChefHat,
+  Gift,
+  Heart,
+  Leaf,
+  MessageCircle,
+  Phone,
+  ShieldCheck,
+  Sparkles,
+  Star,
+  Truck,
+} from "lucide-react";
+import { ImagePlaceholder } from "@/components/ImagePlaceholder";
+import { Reveal, stagger, staggerItem } from "@/components/Reveal";
+import { SectionHeading } from "@/components/SectionHeading";
+import { Counter } from "@/components/Counter";
+import { site, telLink, whatsappLink } from "@/lib/site";
+import { useEffect, useState } from "react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "Geeta Aggarwal Sweets — Premium Indian Mithai & Namkeen" },
+      {
+        name: "description",
+        content:
+          "Authentic handcrafted Indian sweets, namkeen and festive gift boxes — prepared fresh every morning with time-honoured family recipes.",
+      },
+      { property: "og:title", content: "Geeta Aggarwal Sweets" },
+      { property: "og:description", content: "A legacy of authentic Indian sweets." },
     ],
   }),
-  component: Index,
+  component: HomePage,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+const features = [
+  { icon: Leaf, title: "Pure Ingredients", desc: "Only the finest desi ghee, nuts and natural sweeteners — never compromise on quality." },
+  { icon: ChefHat, title: "Fresh Daily", desc: "Every sweet is prepared the same morning it's sold — never stored, never reheated." },
+  { icon: ShieldCheck, title: "Hygienic Preparation", desc: "FSSAI compliant kitchens with strict hygiene protocols at every stage." },
+  { icon: Heart, title: "Traditional Recipes", desc: "Heirloom recipes passed down through generations of master halwais." },
+  { icon: Award, title: "Premium Quality", desc: "Hand-finished by experienced craftsmen for that unmistakable melt-in-mouth feel." },
+  { icon: Truck, title: "Trusted Service", desc: "Reliable delivery for weddings, festivals and corporate gifting across the city." },
+];
+
+const festivals = [
+  { icon: Sparkles, title: "Diwali Specials", desc: "Festive mithai boxes and dry-fruit assortments to light up your celebrations." },
+  { icon: Heart, title: "Wedding Orders", desc: "Bulk shagun trays, return gifts and customised platters for every ceremony." },
+  { icon: Gift, title: "Corporate Gifting", desc: "Premium branded hampers — perfect for clients, employees and partners." },
+  { icon: Truck, title: "Bulk Orders", desc: "Reliable supply for events of any scale, delivered fresh and on time." },
+];
+
+function useAutoSlide(length: number, delay = 5000) {
+  const [i, setI] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setI((v) => (v + 1) % length), delay);
+    return () => clearInterval(t);
+  }, [length, delay]);
+  return [i, setI] as const;
+}
+
+function HomePage() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
+    <>
+      <Hero />
+      <TrustBar />
+      <AboutPreview />
+      <FeaturedProducts />
+      <WhyChooseUs />
+      <GalleryPreview />
+      <Testimonials />
+      <FestivalSpecials />
+      <ContactCTA />
+    </>
+  );
+}
+
+function Hero() {
+  return (
+    <section className="relative -mt-20 flex min-h-[100svh] items-center overflow-hidden pt-24 pb-12">
+      {/* Animated background */}
+      <div className="absolute inset-0 bg-gradient-cream" />
+      <div className="absolute inset-0 bg-[radial-gradient(60%_50%_at_80%_20%,color-mix(in_oklab,var(--saffron)_22%,transparent),transparent_60%),radial-gradient(50%_40%_at_10%_80%,color-mix(in_oklab,var(--gold)_22%,transparent),transparent_60%)]" />
+
+      {/* Floating ornaments */}
+      <motion.div
+        className="absolute left-[6%] top-[18%] h-24 w-24 rounded-full bg-gradient-gold opacity-30 blur-2xl"
+        animate={{ y: [0, -20, 0] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       />
-    </div>
+      <motion.div
+        className="absolute right-[8%] bottom-[12%] h-32 w-32 rounded-full bg-[color:var(--maroon)] opacity-20 blur-3xl"
+        animate={{ y: [0, 25, 0] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <div className="absolute right-[20%] top-[10%] hidden lg:block">
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+          className="text-[color:var(--gold)]/40"
+        >
+          <Sparkles className="size-10" />
+        </motion.div>
+      </div>
+
+      <div className="relative mx-auto grid w-full max-w-7xl gap-12 px-4 lg:grid-cols-[1.05fr_1fr] lg:items-center">
+        <div className="text-center lg:text-left">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            className="inline-flex items-center gap-2 rounded-full border border-[color:var(--gold)]/40 bg-card/60 px-4 py-1.5 backdrop-blur"
+          >
+            <Star className="size-3.5 fill-[color:var(--gold)] text-[color:var(--gold)]" />
+            <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[color:var(--brown)]">
+              A Legacy of Taste
+            </span>
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.1 }}
+            className="mt-6 font-display text-5xl font-semibold leading-[1.05] text-foreground sm:text-6xl lg:text-7xl"
+          >
+            {site.name.split(" ").slice(0, -1).join(" ")}{" "}
+            <span className="text-gradient-festive">{site.name.split(" ").slice(-1)}</span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.25 }}
+            className="mx-auto mt-5 max-w-xl text-base text-muted-foreground sm:text-lg lg:mx-0"
+          >
+            {site.shortDescription}
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.4 }}
+            className="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start"
+          >
+            <Link
+              to="/products"
+              className="group flex items-center gap-2 rounded-full bg-gradient-festive px-6 py-3.5 text-sm font-semibold text-white shadow-gold transition hover:scale-[1.02]"
+            >
+              Explore Products
+              <ArrowRight className="size-4 transition group-hover:translate-x-1" />
+            </Link>
+            <a
+              href={whatsappLink()}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-2 rounded-full border border-[color:var(--gold)]/50 bg-card/60 px-6 py-3.5 text-sm font-semibold text-foreground backdrop-blur transition hover:bg-[color:var(--gold)]/10"
+            >
+              <MessageCircle className="size-4" /> Order on WhatsApp
+            </a>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.7 }}
+            className="mt-10 flex flex-wrap items-center justify-center gap-6 text-xs text-muted-foreground lg:justify-start"
+          >
+            <div className="flex items-center gap-2">
+              <ShieldCheck className="size-4 text-[color:var(--gold)]" /> FSSAI Certified
+            </div>
+            <div className="flex items-center gap-2">
+              <Leaf className="size-4 text-[color:var(--gold)]" /> Pure Desi Ghee
+            </div>
+            <div className="flex items-center gap-2">
+              <Award className="size-4 text-[color:var(--gold)]" /> Trusted for Generations
+            </div>
+          </motion.div>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.3 }}
+          className="relative"
+        >
+          <div className="absolute -inset-6 rounded-[2.5rem] bg-gradient-gold opacity-30 blur-2xl" />
+          <div className="relative overflow-hidden rounded-[2rem] shadow-luxe ring-1 ring-[color:var(--gold)]/40">
+            <ImagePlaceholder
+              label="Hero Sweets Banner"
+              aspect="aspect-[4/5]"
+              rounded="rounded-[2rem]"
+            />
+          </div>
+          {/* Floating badge */}
+          <motion.div
+            animate={{ y: [0, -10, 0] }}
+            transition={{ duration: 4, repeat: Infinity }}
+            className="absolute -left-6 bottom-10 hidden rounded-2xl glass-strong p-4 shadow-soft sm:block"
+          >
+            <div className="flex items-center gap-3">
+              <div className="grid size-10 place-items-center rounded-full bg-gradient-gold">
+                <Star className="size-5 text-[color:var(--maroon)]" />
+              </div>
+              <div>
+                <div className="text-lg font-semibold">4.9 / 5</div>
+                <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Google Reviews</div>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2 }}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2"
+      >
+        <div className="flex h-9 w-6 items-start justify-center rounded-full border-2 border-[color:var(--gold)]/60 p-1">
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+            className="h-1.5 w-1 rounded-full bg-[color:var(--gold)]"
+          />
+        </div>
+      </motion.div>
+    </section>
+  );
+}
+
+function TrustBar() {
+  return (
+    <section className="relative py-16">
+      <div className="mx-auto max-w-7xl px-4">
+        <div className="rounded-3xl bg-gradient-festive p-8 shadow-luxe sm:p-12">
+          <div className="grid grid-cols-2 gap-6 text-white sm:gap-8 lg:grid-cols-4">
+            {site.stats.map((s) => (
+              <Reveal key={s.label} className="text-center">
+                <div className="font-display text-4xl font-bold sm:text-5xl">
+                  <Counter to={s.value} suffix={s.suffix} decimals={s.decimals} />
+                </div>
+                <div className="mt-2 text-xs font-medium uppercase tracking-[0.2em] text-white/80">
+                  {s.label}
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AboutPreview() {
+  return (
+    <section className="py-20 sm:py-28">
+      <div className="mx-auto grid max-w-7xl gap-12 px-4 lg:grid-cols-2 lg:items-center">
+        <Reveal>
+          <div className="relative">
+            <div className="absolute -inset-4 rounded-[2rem] bg-gradient-gold opacity-20 blur-2xl" />
+            <ImagePlaceholder
+              label="Shop Heritage Image"
+              aspect="aspect-[5/6]"
+              rounded="rounded-[1.75rem]"
+              className="relative shadow-luxe"
+            />
+            <div className="absolute -bottom-6 -right-4 hidden rounded-2xl glass-strong p-4 shadow-soft sm:block">
+              <div className="font-display text-3xl font-bold text-gradient-festive">40+</div>
+              <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Years of Craft</div>
+            </div>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.1}>
+          <div className="flex items-center gap-2">
+            <span className="h-px w-8 bg-[color:var(--gold)]" />
+            <span className="text-xs font-semibold uppercase tracking-[0.25em] text-[color:var(--gold)]">
+              Our Story
+            </span>
+          </div>
+          <h2 className="mt-3 font-display text-3xl font-semibold sm:text-4xl lg:text-5xl">
+            A taste of <span className="text-gradient-festive">tradition</span>, crafted with love.
+          </h2>
+          <p className="mt-5 text-muted-foreground">
+            From a small family kitchen to a beloved name in the city — Geeta Aggarwal Sweets has been
+            preserving the authentic flavours of India for decades. Every morning begins the same way:
+            pure desi ghee, hand-picked ingredients, and recipes that have stayed unchanged for three generations.
+          </p>
+          <p className="mt-3 text-muted-foreground">
+            <span className="italic text-[color:var(--brown)]">[Replace with your detailed about content]</span>
+          </p>
+          <Link
+            to="/about"
+            className="mt-7 inline-flex items-center gap-2 rounded-full border border-[color:var(--gold)]/50 px-6 py-3 text-sm font-semibold transition hover:bg-[color:var(--gold)]/10"
+          >
+            Read More <ArrowRight className="size-4" />
+          </Link>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+function FeaturedProducts() {
+  return (
+    <section className="py-20 sm:py-28">
+      <div className="mx-auto max-w-7xl px-4">
+        <SectionHeading
+          eyebrow="Bestsellers"
+          title={<>Featured <span className="text-gradient-festive">Sweets</span></>}
+          description="A small taste of our most-loved creations — each one prepared the traditional way."
+        />
+
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.1 }}
+          className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+        >
+          {Array.from({ length: 6 }).map((_, i) => (
+            <motion.article
+              key={i}
+              variants={staggerItem}
+              whileHover={{ y: -6 }}
+              transition={{ type: "spring", stiffness: 260, damping: 20 }}
+              className="group overflow-hidden rounded-3xl bg-card shadow-soft ring-1 ring-border transition-all duration-500 hover:shadow-luxe hover:ring-[color:var(--gold)]/50"
+            >
+              <div className="overflow-hidden">
+                <div className="transition-transform duration-700 group-hover:scale-105">
+                  <ImagePlaceholder label={`Product ${i + 1}`} aspect="aspect-[4/3]" rounded="rounded-none" />
+                </div>
+              </div>
+              <div className="p-6">
+                <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[color:var(--gold)]">
+                  Signature
+                </div>
+                <h3 className="mt-2 font-display text-xl font-semibold text-foreground">
+                  Product Name Placeholder
+                </h3>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Short description placeholder — describe the texture, ingredients and what makes this sweet special.
+                </p>
+              </div>
+            </motion.article>
+          ))}
+        </motion.div>
+
+        <div className="mt-12 text-center">
+          <Link
+            to="/products"
+            className="inline-flex items-center gap-2 rounded-full bg-gradient-festive px-7 py-3.5 text-sm font-semibold text-white shadow-gold transition hover:scale-[1.02]"
+          >
+            View All Products <ArrowRight className="size-4" />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function WhyChooseUs() {
+  return (
+    <section className="py-20 sm:py-28">
+      <div className="mx-auto max-w-7xl px-4">
+        <SectionHeading
+          eyebrow="Why Choose Us"
+          title={<>The <span className="text-gradient-festive">Geeta Aggarwal</span> promise</>}
+          description="Six reasons families across the city have trusted us for generations."
+        />
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.1 }}
+          className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+        >
+          {features.map(({ icon: Icon, title, desc }) => (
+            <motion.div
+              key={title}
+              variants={staggerItem}
+              whileHover={{ y: -4 }}
+              className="group relative overflow-hidden rounded-3xl border border-border bg-card p-7 shadow-soft transition hover:border-[color:var(--gold)]/50 hover:shadow-gold"
+            >
+              <div className="absolute -right-10 -top-10 size-32 rounded-full bg-gradient-gold opacity-0 blur-3xl transition group-hover:opacity-30" />
+              <div className="grid size-12 place-items-center rounded-2xl bg-gradient-gold text-[color:var(--maroon)] shadow-gold">
+                <Icon className="size-6" />
+              </div>
+              <h3 className="mt-5 font-display text-xl font-semibold">{title}</h3>
+              <p className="mt-2 text-sm text-muted-foreground">{desc}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+function GalleryPreview() {
+  // masonry-ish with varying aspect ratios
+  const aspects = [
+    "aspect-[3/4]", "aspect-[4/3]", "aspect-[1/1]", "aspect-[4/5]",
+    "aspect-[1/1]", "aspect-[3/4]", "aspect-[4/3]", "aspect-[4/5]",
+  ];
+  return (
+    <section className="py-20 sm:py-28">
+      <div className="mx-auto max-w-7xl px-4">
+        <SectionHeading
+          eyebrow="Gallery"
+          title={<>A glimpse of our <span className="text-gradient-festive">creations</span></>}
+          description="From the kitchen to the counter — moments captured."
+        />
+        <div className="mt-12 columns-2 gap-4 sm:columns-3 lg:columns-4 [&>*]:mb-4 [&>*]:break-inside-avoid">
+          {aspects.map((a, i) => (
+            <Reveal key={i} delay={i * 0.04}>
+              <div className="group relative overflow-hidden rounded-2xl ring-1 ring-[color:var(--gold)]/20 shadow-soft">
+                <div className="transition-transform duration-700 group-hover:scale-110">
+                  <ImagePlaceholder label={`Gallery ${i + 1}`} aspect={a} rounded="rounded-none" />
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+        <div className="mt-10 text-center">
+          <a
+            href="#"
+            className="inline-flex items-center gap-2 rounded-full border border-[color:var(--gold)]/50 px-7 py-3.5 text-sm font-semibold transition hover:bg-[color:var(--gold)]/10"
+          >
+            View Full Gallery <ArrowRight className="size-4" />
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Testimonials() {
+  const items = [0, 1, 2, 3];
+  const [active, setActive] = useAutoSlide(items.length, 5500);
+  return (
+    <section className="py-20 sm:py-28">
+      <div className="mx-auto max-w-7xl px-4">
+        <SectionHeading
+          eyebrow="Customer Reviews"
+          title={<>Loved by <span className="text-gradient-festive">thousands</span></>}
+          description="Real words from the families we've had the pleasure of serving."
+        />
+
+        <div className="relative mx-auto mt-14 max-w-3xl">
+          <div className="relative h-80 overflow-hidden rounded-3xl glass-strong p-8 shadow-luxe sm:p-12">
+            {items.map((i) => (
+              <motion.div
+                key={i}
+                initial={false}
+                animate={{
+                  opacity: active === i ? 1 : 0,
+                  y: active === i ? 0 : 20,
+                }}
+                transition={{ duration: 0.6 }}
+                className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center sm:p-12"
+                style={{ pointerEvents: active === i ? "auto" : "none" }}
+              >
+                <div className="size-16 overflow-hidden rounded-full ring-2 ring-[color:var(--gold)]/50">
+                  <ImagePlaceholder label="" aspect="aspect-square" rounded="rounded-full" />
+                </div>
+                <div className="mt-4 flex gap-1 text-[color:var(--gold)]">
+                  {Array.from({ length: 5 }).map((_, k) => (
+                    <Star key={k} className="size-4 fill-current" />
+                  ))}
+                </div>
+                <p className="mt-4 max-w-xl font-display text-lg italic text-foreground sm:text-xl">
+                  "Customer review placeholder — replace this with real Google review text from your customers."
+                </p>
+                <div className="mt-4 font-semibold text-foreground">Customer Name Placeholder</div>
+                <div className="text-xs text-muted-foreground">Verified Customer</div>
+              </motion.div>
+            ))}
+          </div>
+          <div className="mt-6 flex justify-center gap-2">
+            {items.map((i) => (
+              <button
+                key={i}
+                onClick={() => setActive(i)}
+                aria-label={`Show review ${i + 1}`}
+                className={`h-1.5 rounded-full transition-all ${
+                  active === i ? "w-8 bg-[color:var(--gold)]" : "w-4 bg-border"
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FestivalSpecials() {
+  return (
+    <section className="py-20 sm:py-28">
+      <div className="mx-auto max-w-7xl px-4">
+        <SectionHeading
+          eyebrow="Specials"
+          title={<>For every <span className="text-gradient-festive">celebration</span></>}
+          description="From festivals to weddings to corporate events — we craft the perfect sweet experience."
+        />
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.1 }}
+          className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
+        >
+          {festivals.map(({ icon: Icon, title, desc }) => (
+            <motion.div
+              key={title}
+              variants={staggerItem}
+              whileHover={{ y: -6 }}
+              className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-[color:var(--maroon)] to-[color:var(--brown)] p-7 text-white shadow-luxe"
+            >
+              <div className="absolute -right-8 -top-8 size-32 rounded-full bg-[color:var(--gold)] opacity-20 blur-2xl transition group-hover:opacity-40" />
+              <div className="grid size-12 place-items-center rounded-2xl bg-gradient-gold text-[color:var(--maroon)] shadow-gold">
+                <Icon className="size-6" />
+              </div>
+              <h3 className="mt-5 font-display text-xl font-semibold">{title}</h3>
+              <p className="mt-2 text-sm text-white/75">{desc}</p>
+              <div className="mt-5 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--gold)]">
+                Enquire <ArrowRight className="size-3" />
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+function ContactCTA() {
+  return (
+    <section className="py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl px-4">
+        <Reveal>
+          <div className="relative overflow-hidden rounded-[2rem] bg-gradient-festive p-10 text-center shadow-luxe sm:p-16">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,color-mix(in_oklab,var(--gold)_30%,transparent),transparent_60%)]" />
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
+              className="absolute right-8 top-8 text-white/30"
+            >
+              <Sparkles className="size-10" />
+            </motion.div>
+            <div className="relative">
+              <span className="text-xs font-semibold uppercase tracking-[0.3em] text-white/80">
+                Ready to Order?
+              </span>
+              <h2 className="mt-4 font-display text-4xl font-semibold text-white sm:text-5xl lg:text-6xl">
+                Let's sweeten your moment.
+              </h2>
+              <p className="mx-auto mt-4 max-w-xl text-white/80">
+                Place your order in seconds via WhatsApp or call us directly — bulk orders welcome.
+              </p>
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+                <a
+                  href={whatsappLink()}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-[color:var(--maroon)] shadow-luxe transition hover:scale-[1.02]"
+                >
+                  <MessageCircle className="size-4" /> WhatsApp Order
+                </a>
+                <a
+                  href={telLink}
+                  className="flex items-center gap-2 rounded-full border border-white/40 bg-white/10 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/20"
+                >
+                  <Phone className="size-4" /> Call Now
+                </a>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
   );
 }
