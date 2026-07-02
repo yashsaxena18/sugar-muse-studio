@@ -89,7 +89,7 @@ export function Navbar() {
             <button
               aria-label="Menu"
               onClick={() => setOpen((v) => !v)}
-              className="grid size-10 place-items-center rounded-full border border-[color:var(--gold)]/30 bg-card/60 backdrop-blur"
+              className="grid size-11 place-items-center rounded-full border border-[color:var(--gold)]/30 bg-card/60 backdrop-blur"
             >
               {open ? <X className="size-5" /> : <Menu className="size-5" />}
             </button>

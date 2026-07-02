@@ -33,7 +33,7 @@ function ContactPage() {
             <span className="inline-flex items-center gap-2 rounded-full border border-[color:var(--gold)]/40 bg-card/60 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.25em] text-[color:var(--brown)] backdrop-blur">
               Contact
             </span>
-            <h1 className="mt-5 font-display text-5xl font-semibold leading-[1.05] sm:text-6xl lg:text-7xl">
+            <h1 className="mt-5 font-display text-3xl font-semibold leading-[1.05] sm:text-5xl lg:text-7xl">
               Let's <span className="text-gradient-festive">connect</span>.
             </h1>
             <p className="mx-auto mt-5 max-w-xl text-muted-foreground">
@@ -58,7 +58,7 @@ function ContactPage() {
                 <Reveal key={label}>
                   <Comp
                     {...(href ? { href } : {})}
-                    className="group flex items-start gap-4 rounded-3xl border border-border bg-card p-6 shadow-soft transition hover:border-[color:var(--gold)]/50 hover:shadow-gold"
+                    className="group flex items-start gap-4 rounded-3xl border border-border bg-card p-5 sm:p-6 shadow-soft transition hover:border-[color:var(--gold)]/50 hover:shadow-gold"
                   >
                     <div className="grid size-12 shrink-0 place-items-center rounded-2xl bg-gradient-gold text-[color:var(--maroon)] shadow-gold">
                       <Icon className="size-5" />
@@ -77,7 +77,7 @@ function ContactPage() {
                 href={whatsappLink()}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center justify-center gap-2 rounded-3xl bg-gradient-festive px-6 py-4 text-sm font-semibold text-white shadow-luxe transition hover:scale-[1.01]"
+                className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-3xl bg-gradient-festive px-6 py-4 text-sm font-semibold text-white shadow-luxe transition hover:scale-[1.01]"
               >
                 Chat on WhatsApp
               </a>
@@ -91,10 +91,10 @@ function ContactPage() {
                 e.preventDefault();
                 setSent(true);
               }}
-              className="relative overflow-hidden rounded-3xl bg-card p-6 shadow-luxe ring-1 ring-border sm:p-10"
+              className="relative overflow-hidden rounded-3xl bg-card p-5 sm:p-10 shadow-luxe ring-1 ring-border"
             >
               <div className="absolute -right-16 -top-16 size-48 rounded-full bg-gradient-gold opacity-15 blur-3xl" />
-              <h2 className="font-display text-2xl font-semibold sm:text-3xl">Send a message</h2>
+              <h2 className="font-display text-xl sm:text-3xl font-semibold">Send a message</h2>
               <p className="mt-2 text-sm text-muted-foreground">We typically reply within a few hours.</p>
 
               <div className="mt-6 grid gap-4 sm:grid-cols-2">
@@ -115,7 +115,7 @@ function ContactPage() {
 
               <button
                 type="submit"
-                className="mt-6 inline-flex items-center gap-2 rounded-full bg-gradient-festive px-7 py-3.5 text-sm font-semibold text-white shadow-gold transition hover:scale-[1.02]"
+                className="mt-6 inline-flex w-full sm:w-auto justify-center items-center gap-2 rounded-full bg-gradient-festive px-7 py-3.5 text-sm font-semibold text-white shadow-gold transition hover:scale-[1.02]"
               >
                 <Send className="size-4" /> Send Message
               </button>
@@ -135,7 +135,7 @@ function ContactPage() {
         <div className="mx-auto max-w-7xl px-4">
           <Reveal>
             <div className="relative overflow-hidden rounded-3xl ring-1 ring-[color:var(--gold)]/30 shadow-soft">
-              <div className="aspect-[16/7] w-full placeholder-shimmer relative">
+              <div className="aspect-video sm:aspect-[16/7] w-full placeholder-shimmer relative">
                 <div className="absolute inset-0 grid place-items-center text-center text-[color:var(--brown)]">
                   <div>
                     <MapPin className="mx-auto size-8" />

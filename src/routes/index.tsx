@@ -124,7 +124,7 @@ function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.1 }}
-            className="mt-6 font-display text-5xl font-semibold leading-[1.05] text-foreground sm:text-6xl lg:text-7xl"
+            className="mt-6 font-display text-3xl font-semibold leading-[1.05] text-foreground sm:text-5xl lg:text-7xl"
           >
             {site.name.split(" ").slice(0, -1).join(" ")}{" "}
             <span className="text-gradient-festive">{site.name.split(" ").slice(-1)}</span>
@@ -134,7 +134,7 @@ function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.25 }}
-            className="mx-auto mt-5 max-w-xl text-base text-muted-foreground sm:text-lg lg:mx-0"
+            className="mx-auto mt-5 max-w-xl text-sm text-muted-foreground sm:text-base lg:text-lg lg:mx-0"
           >
             {site.shortDescription}
           </motion.p>
@@ -143,11 +143,11 @@ function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.4 }}
-            className="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start"
+            className="mt-8 flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 lg:justify-start"
           >
             <Link
               to="/products"
-              className="group flex items-center gap-2 rounded-full bg-gradient-festive px-6 py-3.5 text-sm font-semibold text-white shadow-gold transition hover:scale-[1.02]"
+              className="group flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-gradient-festive px-6 py-3.5 text-sm font-semibold text-white shadow-gold transition hover:scale-[1.02]"
             >
               Explore Products
               <ArrowRight className="size-4 transition group-hover:translate-x-1" />
@@ -156,7 +156,7 @@ function Hero() {
               href={whatsappLink()}
               target="_blank"
               rel="noreferrer"
-              className="flex items-center gap-2 rounded-full border border-[color:var(--gold)]/50 bg-card/60 px-6 py-3.5 text-sm font-semibold text-foreground backdrop-blur transition hover:bg-[color:var(--gold)]/10"
+              className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-full border border-[color:var(--gold)]/50 bg-card/60 px-6 py-3.5 text-sm font-semibold text-foreground backdrop-blur transition hover:bg-[color:var(--gold)]/10"
             >
               <MessageCircle className="size-4" /> Order on WhatsApp
             </a>
@@ -236,11 +236,11 @@ function TrustBar() {
   return (
     <section className="relative py-16">
       <div className="mx-auto max-w-7xl px-4">
-        <div className="rounded-3xl bg-gradient-festive p-8 shadow-luxe sm:p-12">
+        <div className="rounded-3xl bg-gradient-festive p-6 shadow-luxe sm:p-12">
           <div className="grid grid-cols-2 gap-6 text-white sm:gap-8 lg:grid-cols-4">
             {site.stats.map((s) => (
               <Reveal key={s.label} className="text-center">
-                <div className="font-display text-4xl font-bold sm:text-5xl">
+                <div className="font-display text-3xl font-bold sm:text-5xl">
                   <Counter to={s.value} suffix={s.suffix} decimals={s.decimals} />
                 </div>
                 <div className="mt-2 text-xs font-medium uppercase tracking-[0.2em] text-white/80">
@@ -282,7 +282,7 @@ function AboutPreview() {
               Our Story
             </span>
           </div>
-          <h2 className="mt-3 font-display text-3xl font-semibold sm:text-4xl lg:text-5xl">
+          <h2 className="mt-3 font-display text-2xl font-semibold leading-tight sm:text-4xl lg:text-5xl">
             A taste of <span className="text-gradient-festive">tradition</span>, crafted with love.
           </h2>
           <p className="mt-5 text-muted-foreground">
@@ -335,11 +335,11 @@ function FeaturedProducts() {
                   <ImagePlaceholder label={`Product ${i + 1}`} aspect="aspect-[4/3]" rounded="rounded-none" />
                 </div>
               </div>
-              <div className="p-6">
+              <div className="p-5 sm:p-6">
                 <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[color:var(--gold)]">
                   Signature
                 </div>
-                <h3 className="mt-2 font-display text-xl font-semibold text-foreground">
+                <h3 className="mt-2 font-display text-lg sm:text-xl font-semibold text-foreground">
                   Product Name Placeholder
                 </h3>
                 <p className="mt-2 text-sm text-muted-foreground">
@@ -390,7 +390,7 @@ function WhyChooseUs() {
               <div className="grid size-12 place-items-center rounded-2xl bg-gradient-gold text-[color:var(--maroon)] shadow-gold">
                 <Icon className="size-6" />
               </div>
-              <h3 className="mt-5 font-display text-xl font-semibold">{title}</h3>
+              <h3 className="mt-5 font-display text-lg sm:text-xl font-semibold">{title}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{desc}</p>
             </motion.div>
           ))}
@@ -451,7 +451,7 @@ function Testimonials() {
         />
 
         <div className="relative mx-auto mt-14 max-w-3xl">
-          <div className="relative h-80 overflow-hidden rounded-3xl glass-strong p-8 shadow-luxe sm:p-12">
+          <div className="relative h-80 overflow-hidden rounded-3xl glass-strong p-6 shadow-luxe sm:p-12">
             {items.map((i) => (
               <motion.div
                 key={i}
@@ -525,7 +525,7 @@ function FestivalSpecials() {
               <div className="grid size-12 place-items-center rounded-2xl bg-gradient-gold text-[color:var(--maroon)] shadow-gold">
                 <Icon className="size-6" />
               </div>
-              <h3 className="mt-5 font-display text-xl font-semibold">{title}</h3>
+              <h3 className="mt-5 font-display text-lg sm:text-xl font-semibold">{title}</h3>
               <p className="mt-2 text-sm text-white/75">{desc}</p>
               <div className="mt-5 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--gold)]">
                 Enquire <ArrowRight className="size-3" />
@@ -543,7 +543,7 @@ function ContactCTA() {
     <section className="py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-4">
         <Reveal>
-          <div className="relative overflow-hidden rounded-[2rem] bg-gradient-festive p-10 text-center shadow-luxe sm:p-16">
+          <div className="relative overflow-hidden rounded-[2rem] bg-gradient-festive p-8 text-center shadow-luxe sm:p-16">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,color-mix(in_oklab,var(--gold)_30%,transparent),transparent_60%)]" />
             <motion.div
               animate={{ rotate: 360 }}
@@ -556,24 +556,24 @@ function ContactCTA() {
               <span className="text-xs font-semibold uppercase tracking-[0.3em] text-white/80">
                 Ready to Order?
               </span>
-              <h2 className="mt-4 font-display text-4xl font-semibold text-white sm:text-5xl lg:text-6xl">
+              <h2 className="mt-4 font-display text-2xl font-semibold leading-tight text-white sm:text-4xl lg:text-6xl">
                 Let's sweeten your moment.
               </h2>
               <p className="mx-auto mt-4 max-w-xl text-white/80">
                 Place your order in seconds via WhatsApp or call us directly — bulk orders welcome.
               </p>
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+              <div className="mt-8 flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3">
                 <a
                   href={whatsappLink()}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-[color:var(--maroon)] shadow-luxe transition hover:scale-[1.02]"
+                  className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-[color:var(--maroon)] shadow-luxe transition hover:scale-[1.02]"
                 >
                   <MessageCircle className="size-4" /> WhatsApp Order
                 </a>
                 <a
                   href={telLink}
-                  className="flex items-center gap-2 rounded-full border border-white/40 bg-white/10 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/20"
+                  className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-full border border-white/40 bg-white/10 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/20"
                 >
                   <Phone className="size-4" /> Call Now
                 </a>

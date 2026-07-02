@@ -41,7 +41,7 @@ function AboutPage() {
             <span className="inline-flex items-center gap-2 rounded-full border border-[color:var(--gold)]/40 bg-card/60 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.25em] text-[color:var(--brown)] backdrop-blur">
               Our Story
             </span>
-            <h1 className="mx-auto mt-5 max-w-3xl font-display text-5xl font-semibold leading-[1.05] sm:text-6xl lg:text-7xl">
+            <h1 className="mx-auto mt-5 max-w-3xl font-display text-3xl font-semibold leading-[1.05] sm:text-5xl lg:text-7xl">
               A legacy <span className="text-gradient-festive">three generations</span> in the making.
             </h1>
             <p className="mx-auto mt-5 max-w-2xl text-muted-foreground">
@@ -72,7 +72,7 @@ function AboutPage() {
                 The Beginning
               </span>
             </div>
-            <h2 className="mt-3 font-display text-3xl font-semibold sm:text-4xl lg:text-5xl">
+            <h2 className="mt-3 font-display text-2xl font-semibold leading-tight sm:text-4xl lg:text-5xl">
               Crafted with hands, served with heart.
             </h2>
             <p className="mt-5 text-muted-foreground">
@@ -105,15 +105,15 @@ function AboutPage() {
               <motion.div
                 key={eyebrow}
                 variants={staggerItem}
-                className="relative overflow-hidden rounded-3xl bg-card p-8 shadow-soft ring-1 ring-border sm:p-10"
+                className="relative overflow-hidden rounded-3xl bg-card p-6 shadow-soft ring-1 ring-border sm:p-10"
               >
                 <div className="absolute -right-12 -top-12 size-40 rounded-full bg-gradient-gold opacity-15 blur-3xl" />
                 <div className="grid size-12 place-items-center rounded-2xl bg-gradient-gold text-[color:var(--maroon)] shadow-gold">
                   <Icon className="size-6" />
                 </div>
                 <div className="mt-5 text-xs font-semibold uppercase tracking-[0.25em] text-[color:var(--gold)]">{eyebrow}</div>
-                <h3 className="mt-2 font-display text-2xl font-semibold sm:text-3xl">{title}</h3>
-                <p className="mt-3 text-muted-foreground">{desc}</p>
+                <h3 className="mt-2 font-display text-xl font-semibold sm:text-3xl">{title}</h3>
+                <p className="mt-3 text-sm sm:text-base text-muted-foreground">{desc}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -152,8 +152,8 @@ function AboutPage() {
                     <div className={`sm:[direction:ltr] ${i % 2 === 1 ? "sm:text-right" : ""}`}>
                       <div className="ml-12 sm:ml-0">
                         <div className="text-xs font-semibold uppercase tracking-[0.25em] text-[color:var(--gold)]">{t.year}</div>
-                        <h3 className="mt-1 font-display text-2xl font-semibold">{t.title}</h3>
-                        <p className="mt-2 text-muted-foreground">{t.desc}</p>
+                        <h3 className="mt-1 font-display text-xl sm:text-2xl font-semibold">{t.title}</h3>
+                        <p className="mt-2 text-sm sm:text-base text-muted-foreground">{t.desc}</p>
                       </div>
                     </div>
                     <div />
@@ -189,7 +189,7 @@ function AboutPage() {
       {/* Values strip */}
       <section className="py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-4">
-          <div className="grid gap-4 rounded-3xl bg-gradient-festive p-8 text-white shadow-luxe sm:grid-cols-3 sm:p-10">
+          <div className="grid gap-4 rounded-3xl bg-gradient-festive p-6 text-white shadow-luxe sm:grid-cols-3 sm:p-10">
             {[
               { icon: Heart, label: "Family Recipes" },
               { icon: Award, label: "Award-Winning Quality" },

@@ -6,8 +6,8 @@ export function Footer() {
   return (
     <footer className="relative mt-24 overflow-hidden border-t border-[color:var(--gold)]/20 bg-[color:var(--cream)]/60 dark:bg-card">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_0%,color-mix(in_oklab,var(--gold)_15%,transparent),transparent_70%)]" />
-      <div className="relative mx-auto max-w-7xl px-4 py-16">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+      <div className="relative mx-auto max-w-7xl px-4 py-12 sm:py-16">
+        <div className="grid gap-8 sm:gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div>
             <div className="flex items-center gap-3">
               <div className="grid size-11 place-items-center rounded-full bg-gradient-gold text-[color:var(--maroon)] shadow-gold">

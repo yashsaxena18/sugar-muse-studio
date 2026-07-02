@@ -73,7 +73,7 @@ function ProductsPage() {
               <span className="inline-flex items-center gap-2 rounded-full border border-[color:var(--gold)]/40 bg-card/60 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.25em] text-[color:var(--brown)] backdrop-blur">
                 Our Collection
               </span>
-              <h1 className="mt-5 font-display text-5xl font-semibold leading-[1.05] sm:text-6xl lg:text-7xl">
+              <h1 className="mt-5 font-display text-3xl font-semibold leading-[1.05] sm:text-5xl lg:text-7xl">
                 Every sweet, <span className="text-gradient-festive">handcrafted</span>.
               </h1>
               <p className="mt-5 max-w-xl text-muted-foreground">
@@ -166,15 +166,15 @@ function ProductsPage() {
                       {p.category}
                     </div>
                   </div>
-                  <div className="flex flex-1 flex-col p-5">
-                    <h3 className="font-display text-lg font-semibold text-foreground">
+                  <div className="flex flex-1 flex-col p-4 sm:p-5 min-w-0">
+                    <h3 className="font-display text-base sm:text-lg font-semibold text-foreground">
                       {p.name || "Product Name Placeholder"}
                     </h3>
                     <p className="mt-1.5 line-clamp-2 text-sm text-muted-foreground">
                       {p.description || "Short description placeholder — replace with real product details."}
                     </p>
-                    <div className="mt-4 flex items-center justify-between">
-                      <div className="font-display text-xl font-semibold text-gradient-festive">
+                    <div className="mt-4 flex items-center justify-between gap-3">
+                      <div className="font-display text-lg sm:text-xl font-semibold text-gradient-festive">
                         {p.price || "₹ —"}
                       </div>
                       <a
