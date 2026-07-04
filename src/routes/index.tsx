@@ -320,7 +320,7 @@ function FeaturedProducts() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.1 }}
-          className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          className="mt-10 sm:mt-14 grid grid-cols-2 gap-3 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3"
         >
           {Array.from({ length: 6 }).map((_, i) => (
             <motion.article
@@ -328,21 +328,21 @@ function FeaturedProducts() {
               variants={staggerItem}
               whileHover={{ y: -6 }}
               transition={{ type: "spring", stiffness: 260, damping: 20 }}
-              className="group overflow-hidden rounded-3xl bg-card shadow-soft ring-1 ring-border transition-all duration-500 hover:shadow-luxe hover:ring-[color:var(--gold)]/50"
+              className="group overflow-hidden rounded-2xl sm:rounded-3xl bg-card shadow-soft ring-1 ring-border transition-all duration-500 hover:shadow-luxe hover:ring-[color:var(--gold)]/50 flex flex-col"
             >
               <div className="overflow-hidden">
                 <div className="transition-transform duration-700 group-hover:scale-105">
                   <ImagePlaceholder label={`Product ${i + 1}`} aspect="aspect-[4/3]" rounded="rounded-none" />
                 </div>
               </div>
-              <div className="p-5 sm:p-6">
-                <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[color:var(--gold)]">
+              <div className="flex flex-1 flex-col p-3 sm:p-6 min-w-0">
+                <div className="text-[9px] sm:text-[10px] font-semibold uppercase tracking-[0.2em] text-[color:var(--gold)]">
                   Signature
                 </div>
-                <h3 className="mt-2 font-display text-lg sm:text-xl font-semibold text-foreground">
+                <h3 className="mt-1.5 sm:mt-2 font-display text-sm sm:text-xl font-semibold text-foreground leading-tight">
                   Product Name Placeholder
                 </h3>
-                <p className="mt-2 text-sm text-muted-foreground">
+                <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm text-muted-foreground line-clamp-2 sm:line-clamp-none">
                   Short description placeholder — describe the texture, ingredients and what makes this sweet special.
                 </p>
               </div>
@@ -377,21 +377,21 @@ function WhyChooseUs() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.1 }}
-          className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+          className="mt-10 sm:mt-14 grid grid-cols-2 gap-3 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3"
         >
           {features.map(({ icon: Icon, title, desc }) => (
             <motion.div
               key={title}
               variants={staggerItem}
               whileHover={{ y: -4 }}
-              className="group relative overflow-hidden rounded-3xl border border-border bg-card p-7 shadow-soft transition hover:border-[color:var(--gold)]/50 hover:shadow-gold"
+              className="group relative overflow-hidden rounded-2xl sm:rounded-3xl border border-border bg-card p-4 sm:p-7 shadow-soft transition hover:border-[color:var(--gold)]/50 hover:shadow-gold flex flex-col"
             >
               <div className="absolute -right-10 -top-10 size-32 rounded-full bg-gradient-gold opacity-0 blur-3xl transition group-hover:opacity-30" />
-              <div className="grid size-12 place-items-center rounded-2xl bg-gradient-gold text-[color:var(--maroon)] shadow-gold">
-                <Icon className="size-6" />
+              <div className="grid size-10 sm:size-12 place-items-center rounded-xl sm:rounded-2xl bg-gradient-gold text-[color:var(--maroon)] shadow-gold shrink-0">
+                <Icon className="size-5 sm:size-6" />
               </div>
-              <h3 className="mt-5 font-display text-lg sm:text-xl font-semibold">{title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{desc}</p>
+              <h3 className="mt-4 sm:mt-5 font-display text-sm sm:text-xl font-semibold leading-tight">{title}</h3>
+              <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm text-muted-foreground line-clamp-3 sm:line-clamp-none flex-1">{desc}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -512,22 +512,22 @@ function FestivalSpecials() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.1 }}
-          className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
+          className="mt-10 sm:mt-14 grid grid-cols-2 gap-3 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4"
         >
           {festivals.map(({ icon: Icon, title, desc }) => (
             <motion.div
               key={title}
               variants={staggerItem}
               whileHover={{ y: -6 }}
-              className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-[color:var(--maroon)] to-[color:var(--brown)] p-7 text-white shadow-luxe"
+              className="group relative overflow-hidden rounded-2xl sm:rounded-3xl bg-gradient-to-br from-[color:var(--maroon)] to-[color:var(--brown)] p-4 sm:p-7 text-white shadow-luxe flex flex-col"
             >
               <div className="absolute -right-8 -top-8 size-32 rounded-full bg-[color:var(--gold)] opacity-20 blur-2xl transition group-hover:opacity-40" />
-              <div className="grid size-12 place-items-center rounded-2xl bg-gradient-gold text-[color:var(--maroon)] shadow-gold">
-                <Icon className="size-6" />
+              <div className="grid size-10 sm:size-12 place-items-center rounded-xl sm:rounded-2xl bg-gradient-gold text-[color:var(--maroon)] shadow-gold shrink-0">
+                <Icon className="size-5 sm:size-6" />
               </div>
-              <h3 className="mt-5 font-display text-lg sm:text-xl font-semibold">{title}</h3>
-              <p className="mt-2 text-sm text-white/75">{desc}</p>
-              <div className="mt-5 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--gold)]">
+              <h3 className="mt-4 sm:mt-5 font-display text-sm sm:text-xl font-semibold leading-tight">{title}</h3>
+              <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm text-white/75 line-clamp-3 sm:line-clamp-none flex-1">{desc}</p>
+              <div className="mt-4 sm:mt-5 flex items-center gap-1.5 sm:gap-2 text-[9px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--gold)]">
                 Enquire <ArrowRight className="size-3" />
               </div>
             </motion.div>

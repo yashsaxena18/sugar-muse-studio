@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { Search, ShoppingBag, SlidersHorizontal } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import productsData from "@/data/products.json";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { Reveal, stagger, staggerItem } from "@/components/Reveal";
@@ -47,6 +47,11 @@ export const Route = createFileRoute("/products")({
 function ProductsPage() {
   const [query, setQuery] = useState("");
   const [cat, setCat] = useState<(typeof categories)[number]>("All");
+  const [visibleCount, setVisibleCount] = useState(8);
+
+  useEffect(() => {
+    setVisibleCount(8);
+  }, [query, cat]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -145,9 +150,9 @@ function ProductsPage() {
               variants={stagger}
               initial="hidden"
               animate="show"
-              className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+              className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4"
             >
-              {filtered.map((p) => (
+              {filtered.slice(0, visibleCount).map((p) => (
                 <motion.article
                   key={p.id}
                   variants={staggerItem}
@@ -166,30 +171,41 @@ function ProductsPage() {
                       {p.category}
                     </div>
                   </div>
-                  <div className="flex flex-1 flex-col p-4 sm:p-5 min-w-0">
-                    <h3 className="font-display text-base sm:text-lg font-semibold text-foreground">
+                  <div className="flex flex-1 flex-col p-3 sm:p-5 min-w-0">
+                    <h3 className="font-display text-sm sm:text-lg font-semibold text-foreground leading-tight">
                       {p.name || "Product Name Placeholder"}
                     </h3>
-                    <p className="mt-1.5 line-clamp-2 text-sm text-muted-foreground">
+                    <p className="mt-1.5 line-clamp-2 text-xs sm:text-sm text-muted-foreground hidden sm:block">
                       {p.description || "Short description placeholder — replace with real product details."}
                     </p>
-                    <div className="mt-4 flex items-center justify-between gap-3">
-                      <div className="font-display text-lg sm:text-xl font-semibold text-gradient-festive">
+                    <div className="mt-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-3">
+                      <div className="font-display text-base sm:text-xl font-semibold text-gradient-festive">
                         {p.price || "₹ —"}
                       </div>
                       <a
                         href={whatsappLink(`Hi! I'd like to order: ${p.name || `Product #${p.id}`}`)}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-1.5 rounded-full bg-gradient-festive px-4 py-2 text-xs font-semibold text-white shadow-gold transition hover:scale-[1.03]"
+                        className="inline-flex w-full sm:w-auto items-center justify-center gap-1.5 rounded-full bg-gradient-festive px-3 py-1.5 sm:px-4 sm:py-2 text-[10px] sm:text-xs font-semibold text-white shadow-gold transition hover:scale-[1.03]"
                       >
-                        <ShoppingBag className="size-3.5" /> Order
+                        <ShoppingBag className="size-3 sm:size-3.5" /> <span className="hidden sm:inline">Order</span><span className="sm:hidden">Buy</span>
                       </a>
                     </div>
                   </div>
                 </motion.article>
               ))}
             </motion.div>
+          )}
+
+          {filtered.length > visibleCount && (
+            <div className="mt-12 text-center">
+              <button
+                onClick={() => setVisibleCount((prev) => prev + 8)}
+                className="inline-flex items-center gap-2 rounded-full border border-[color:var(--gold)]/50 px-7 py-3.5 text-sm font-semibold transition hover:bg-[color:var(--gold)]/10"
+              >
+                View More Products
+              </button>
+            </div>
           )}
         </div>
       </section>
